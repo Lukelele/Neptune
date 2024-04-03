@@ -8,6 +8,9 @@ public class VisionCone : MonoBehaviour
 {
     [SerializeField] private Creature creature;
     public List<Transform> seen = new List<Transform>();
+    private float timer = 0;
+    private float randomRightMagnitude;
+    private float randomUpMagnitude;
 
     public int numFoodSeen
     {
@@ -88,13 +91,15 @@ public class VisionCone : MonoBehaviour
     {
         get
         {   
-            if (closetFood == null) return new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-            // if (closetFood == null) return creature.transform.forward;
+            if (closetFood == null) return randomDir;
+            //if (closetFood == null) return creature.transform.forward;
             Vector3 foodPos = closetFood.position;
             Vector3 currentPos = creature.transform.position;
             return foodPos - currentPos;
         }
     }
+    
+    public Vector3 randomDir => randomRightMagnitude*creature.transform.right + randomUpMagnitude*creature.transform.up;
 
     public Vector3 closetTerrainDir
     {
@@ -138,5 +143,18 @@ public class VisionCone : MonoBehaviour
         seen.Add(other.transform);
         //if (other.CompareTag("Food")) Debug.Log("Food");
         //if (other.CompareTag("Terrain")) Debug.Log("Terrain");
+    }
+
+    private void FixedUpdate()
+    {
+        timer -= Time.fixedDeltaTime;
+        if (timer <= 0)
+        {
+            randomRightMagnitude = Random.Range(0.5f, 1f) * Random.Range(-1, 2);
+            while (randomRightMagnitude == 0) randomRightMagnitude = Random.Range(0.5f, 1f) * Random.Range(-1, 2);
+            randomUpMagnitude = Random.Range(0.5f, 1f) * Random.Range(-1, 2);
+            //Debug.Log(randomRightMagnitude + " " + randomUpMagnitude);
+            timer = 3;
+        }
     }
 }

@@ -67,7 +67,7 @@ public class flock : MonoBehaviour
         float avoidanceWeight = leader.avoidanceWeight;
 
         GameObject[] gos;
-        gos = leader.allFish;
+        gos = leader.fishList;
 
         Vector3 vcentre = Vector3.zero;
         Vector3 vavoid = Vector3.zero;

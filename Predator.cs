@@ -21,7 +21,7 @@ public class Predator : Creature
     [SerializeField] private bool drawVision;
     [SerializeField] public float turningRate;
     public VisionCone vision;
-    private float[] outputs;
+    private Transform _target;
     public int foodCount;
 
 
@@ -52,6 +52,10 @@ public class Predator : Creature
         
         if (!isAlive) return;
         
+        age += Time.deltaTime;
+        
+        _target = vision.closetFood;
+        
         // Draw vision lines
         if (drawVision)
         {
@@ -61,40 +65,63 @@ public class Predator : Creature
         
         Quaternion foodLookRotation = Quaternion.LookRotation(vision.closetFoodDir);
         Vector3 foodRotationDifference = foodLookRotation.eulerAngles - transform.rotation.eulerAngles;
-        // normalise inputs between -1 and 1
-        if (foodRotationDifference.x > 180) foodRotationDifference.x -= 360;
-        if (foodRotationDifference.y > 180) foodRotationDifference.y -= 360;
-        if (foodRotationDifference.z > 180) foodRotationDifference.z -= 360;
-        foodRotationDifference /= 180;
-
-        // test move scripts
-        // transform.Rotate((foodRotationDifference.x)*Time.timeScale, (foodRotationDifference.y)*Time.timeScale, (foodRotationDifference.z)*Time.timeScale);
-        // transform.Translate(Vector3.forward * (moveSpeed * Time.deltaTime));
-
-        // Quaternion terrainLookRotation = Quaternion.LookRotation(vision.closetTerrainDir);
-        // Vector3 terrainRotationDifference = terrainLookRotation.eulerAngles - transform.rotation.eulerAngles;
+        
+        foodRotationDifference /= 360;
+        
+        
         float[] inputs = { foodRotationDifference.x, foodRotationDifference.y };
         
         brain.FeedForward(inputs);
-        outputs = brain.GetOutput();
-        Move();
-        age += Time.deltaTime;
+        float[] outputs = brain.GetOutput();
+        Vector3 angleToRotate = new Vector3(outputs[0], outputs[1], 0);
+        angleToRotate *= 360;
         
-    }
-
-
-    void Move()
-    {
         switch (motionDimension)
         {
             case Dimension.XY:
-                transform.Rotate(0, outputs[1]*Time.timeScale * turningRate, 0);
+                transform.Rotate(0, angleToRotate.y*Time.timeScale*Time.deltaTime, 0);
+                break;
+            case Dimension.XYZ:
+                Quaternion final = Quaternion.Euler(transform.eulerAngles + angleToRotate);
+                transform.localRotation = Quaternion.Slerp(transform.localRotation, final, Time.deltaTime*Time.timeScale);
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+                break;
+        }
+
+        // QuaternionMethod();
+        
+        Move();
+    }
+
+
+    void QuaternionMethod()
+    {
+        Quaternion rotation = Quaternion.LookRotation(vision.closetFoodDir);
+        Quaternion diff = rotation * Quaternion.Inverse(transform.rotation);
+        //Debug.Log(diff);
+        
+        float[] inputs = { diff.x, diff.y, diff.z, diff.w };
+        
+        brain.FeedForward(inputs);
+        float[] outputs = brain.GetOutput();
+        
+        Quaternion outputDiff = new Quaternion(outputs[0], outputs[1], outputs[2], outputs[3]);
+        //Debug.Log(outputDiff);
+        
+        switch (motionDimension)
+        {
+            case Dimension.XY:
+                transform.Rotate(0, outputDiff.y*Time.timeScale*Time.deltaTime, 0);
                 break;
             case Dimension.XYZ:
                 //transform.Rotate((outputs[0]-0.5f)*Time.timeScale, (outputs[1]-0.5f)*Time.timeScale, (outputs[2]-0.5f)*Time.timeScale);
-                transform.Rotate(outputs[0]*Time.timeScale * turningRate, outputs[1]*Time.timeScale * turningRate, 0);
+                transform.localRotation = Quaternion.Lerp(transform.localRotation, outputDiff*transform.localRotation, Time.timeScale*Time.deltaTime);
                 break;
         }
+    }
+
+    void Move()
+    {
         transform.Translate(Vector3.forward * (moveSpeed * Time.deltaTime));
     }
 

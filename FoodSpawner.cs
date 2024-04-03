@@ -21,19 +21,8 @@ public class FoodSpawner : MonoBehaviour
     }
 
 
-    void Update() {
+    void FixedUpdate() {
         if (GameObject.FindGameObjectsWithTag("Food").Length < spawnCap) SpawnFood();
-    }
-
-
-    void FixedUpdate()
-    {
-        // _spawnRate -= Time.fixedDeltaTime;
-        // if (_spawnRate <= 0)
-        // {
-        //     SpawnFood();
-        //     _spawnRate = spawnRate;
-        // }
     }
     
     void SpawnFood()
