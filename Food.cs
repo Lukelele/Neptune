@@ -10,11 +10,9 @@ public class Food : MonoBehaviour
     {
         switch (other.tag)
         {
-            case "Predator":
-                Predator predator = other.GetComponent<Predator>();
-                predator.energy += energy;
-                predator.foodCount++;
-                //Debug.Log("Eat" + predator.foodCount);
+            case "Prey":
+                FlockUnit flockUnit = other.GetComponent<FlockUnit>();
+                flockUnit.energy += energy;
                 Destroy(gameObject);
                 break;
         }

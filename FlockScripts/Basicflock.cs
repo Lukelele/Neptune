@@ -36,13 +36,11 @@ public class flock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if(Vector3.Distance(transform.position, Vector3.zero) >= leader.tankSize)
-        // {
-        //     turning = true;
-        // }
-        // else { turning = false; }
-
-        Debug.DrawRay(transform.position, transform.forward * avoidanceDistance, Color.green);
+        if(Vector3.Distance(transform.position, Vector3.zero) >= leader.tankSize)
+        {
+            turning = true;
+        }
+        else { turning = false; }
 
         if(turning)
         {
@@ -51,7 +49,7 @@ public class flock : MonoBehaviour
             speed = Random.Range(0.5f, 1);
         }
         else {
-            if (Random.Range(0, 3) < 1) {
+            if (Random.Range(0, 5) < 1) {
                 ApplyRules();
             }
         }
@@ -67,7 +65,7 @@ public class flock : MonoBehaviour
         float avoidanceWeight = leader.avoidanceWeight;
 
         GameObject[] gos;
-        gos = leader.fishList;
+        gos = leader.allFish;
 
         Vector3 vcentre = Vector3.zero;
         Vector3 vavoid = Vector3.zero;
@@ -121,20 +119,17 @@ public class flock : MonoBehaviour
             // speed = (gSpeed / groupSize);
 
             // Constant speed for debug
-            speed = leader.flockSpeed;
+            speed = 1;
 
             // Calculate cohesion, alignment, and avoidance vectors
-            // Vector3 cohesionVector = (vcentre - goalPos - transform.position);
-            // Vector3 avoidanceVector = (vavoid);
-            // Vector3 alignmentVector = (goalPos);
 
-            Vector3 cohesionVector = (vcentre + (goalPos - transform.position));
+            Vector3 cohesionVector = (vcentre + (goalPos - this.transform.position));
             Vector3 avoidanceVector = (vavoid);
             Vector3 alignmentVector = (goalPos).normalized;
 
             // Apply weights to influence the directions
             Vector3 direction = (cohesionVector * cohesionWeight + avoidanceVector * avoidanceWeight + alignmentVector * alignmentWeight) - transform.position;
-            AvoidPredators();
+            // AvoidPredators();
 
             // Unweighted 
             // Vector3 direction = (vcentre + vavoid) - transform.position;

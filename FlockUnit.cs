@@ -13,11 +13,22 @@ public class FlockUnit : MonoBehaviour
     private List<FlockUnit> cohesionNeighbours = new List<FlockUnit>();
     private List<FlockUnit> avoidanceNeighbours = new List<FlockUnit>();
     private List<FlockUnit> alignmentNeighbours = new List<FlockUnit>();
-    private Flock assignedFlock;
-    private Vector3 velocity;
-    private float speed;
+    public Flock assignedFlock;
+    public Vector3 velocity;
+    public float speed;
+    public float energy = 25;
+    public float maxEnergy = 50;
+    public float reproductionEnergyCost = 25;
+    public float energyConsumptionMultiplier = 0.01f;
+
+
+     public void Update()
+    {
+        MoveUnit();
+        ManageEnergy();
+    }
     
-    
+
     public void AssignFlock(Flock flock)
     {
         assignedFlock = flock;
@@ -27,6 +38,7 @@ public class FlockUnit : MonoBehaviour
     {
         this.speed = speed;
     }
+
     
     public void MoveUnit()
     {
@@ -62,8 +74,11 @@ public class FlockUnit : MonoBehaviour
         cohesionNeighbours.Clear();
         avoidanceNeighbours.Clear();
         alignmentNeighbours.Clear();
-        FlockUnit[] allUnits = assignedFlock.AllUnits;
-        for (int i = 0; i < allUnits.Length; i++)
+        List<FlockUnit> allUnits = assignedFlock.AllUnits;
+
+
+
+        for (int i = 0; i < allUnits.Count; i++)
         {
             FlockUnit unit = allUnits[i];
             if (unit == this) continue;
@@ -190,5 +205,35 @@ public class FlockUnit : MonoBehaviour
         }
 
         return bestDirection.normalized;
+    }
+
+
+    private void ManageEnergy()
+    {
+        energy -= Time.deltaTime * energyConsumptionMultiplier;
+        if (energy <= 0)
+        {
+            assignedFlock.AllUnits.Remove(this);
+            Destroy(gameObject);
+        }
+        if (energy > maxEnergy) {
+            energy -= reproductionEnergyCost;
+            assignedFlock.CreateUnit();
+        }
+    }
+
+
+    private void OnCollisionEnter(Collision other)
+    {
+        switch (other.gameObject.tag)
+        {
+            case "Predator":
+                Predator predator = other.gameObject.GetComponent<Predator>();
+                predator.energy += energy;
+                predator.foodCount++;
+                assignedFlock.AllUnits.Remove(this);
+                Destroy(gameObject);
+                break;
+        }
     }
 }
