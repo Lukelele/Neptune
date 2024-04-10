@@ -12,6 +12,8 @@ public class VisionCone : MonoBehaviour
     private float randomRightMagnitude;
     private float randomUpMagnitude;
 
+    public string targetTag;
+
     public int numFoodSeen
     {
         get
@@ -25,7 +27,7 @@ public class VisionCone : MonoBehaviour
                     seen.RemoveAt(i);
                     continue;
                 }
-                if (t.CompareTag("Food")) count++;
+                if (t.CompareTag(targetTag)) count++;
             }
             return count;
         }
@@ -74,7 +76,7 @@ public class VisionCone : MonoBehaviour
                     seen.RemoveAt(i);
                     continue;
                 }
-                if (!t.CompareTag("Food")) continue;
+                if (!t.CompareTag(targetTag)) continue;
                 float dist = Vector3.Distance(t.position, currentPos);
                 if (dist < minDist)
                 {

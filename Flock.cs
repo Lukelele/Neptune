@@ -66,7 +66,7 @@ public class Flock : Creature
     
     public List<FlockUnit> AllUnits { get; set; }
 
-    private Net brain;
+    public Net brain;
     private Transform _target;
     public bool drawVision;
     public Dimension motionDimension;
@@ -76,11 +76,15 @@ public class Flock : Creature
     {
         brain = new Net (new[] { 2, 2 });
         AllUnits = new List<FlockUnit>();
+        drawVision = true;
+        age = 0;
     }
 
     
     void Update()
     {
+        age += Time.deltaTime;
+
         if (drawVision)
         {
             Debug.DrawRay(transform.position, vision.closetFoodDir, Color.green);

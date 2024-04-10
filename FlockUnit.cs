@@ -19,7 +19,7 @@ public class FlockUnit : MonoBehaviour
     public float energy = 25;
     public float maxEnergy = 50;
     public float reproductionEnergyCost = 25;
-    public float energyConsumptionMultiplier = 0.01f;
+    public float energyConsumptionMultiplier = 1;
 
 
      public void Update()
@@ -210,7 +210,7 @@ public class FlockUnit : MonoBehaviour
 
     private void ManageEnergy()
     {
-        energy -= Time.deltaTime * energyConsumptionMultiplier;
+        energy -= Time.deltaTime * 0.001f;
         if (energy <= 0)
         {
             assignedFlock.AllUnits.Remove(this);
@@ -219,6 +219,7 @@ public class FlockUnit : MonoBehaviour
         if (energy > maxEnergy) {
             energy -= reproductionEnergyCost;
             assignedFlock.CreateUnit();
+            Debug.Log(energy);
         }
     }
 

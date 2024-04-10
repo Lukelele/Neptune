@@ -76,17 +76,17 @@ public class Predator : Creature
         Vector3 angleToRotate = new Vector3(outputs[0], outputs[1], 0);
         angleToRotate *= 360;
         
-        // switch (motionDimension)
-        // {
-        //     case Dimension.XY:
-        //         transform.Rotate(0, angleToRotate.y*Time.timeScale*Time.deltaTime, 0);
-        //         break;
-        //     case Dimension.XYZ:
-        //         Quaternion final = Quaternion.Euler(transform.eulerAngles + angleToRotate);
-        //         transform.localRotation = Quaternion.Slerp(transform.localRotation, final, Time.deltaTime*Time.timeScale);
-        //         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
-        //         break;
-        // }
+        switch (motionDimension)
+        {
+            case Dimension.XY:
+                transform.Rotate(0, angleToRotate.y*Time.timeScale*Time.deltaTime, 0);
+                break;
+            case Dimension.XYZ:
+                Quaternion final = Quaternion.Euler(transform.eulerAngles + angleToRotate);
+                transform.localRotation = Quaternion.Slerp(transform.localRotation, final, Time.deltaTime*Time.timeScale);
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+                break;
+        }
 
         // QuaternionMethod();
         
