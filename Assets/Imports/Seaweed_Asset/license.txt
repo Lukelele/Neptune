@@ -1,0 +1,11 @@
+Model Information:
+* title:	Seaweed Asset
+* source:	https://sketchfab.com/3d-models/seaweed-asset-5444487c06d647dfab90960142b9edc2
+* author:	mehgap (https://sketchfab.com/mehgap)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Seaweed Asset" (https://sketchfab.com/3d-models/seaweed-asset-5444487c06d647dfab90960142b9edc2) by mehgap (https://sketchfab.com/mehgap) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
