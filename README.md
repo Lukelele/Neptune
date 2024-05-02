@@ -19,7 +19,9 @@ For Unity project:
 4. Select Add button.
 5. Choose the unzipped folder location.
 6. Open the project.
-7. Done!
+7. There may be security warnings on startup depending on the operating system. On Windows, a pop up may appear, click retarget. On MacOS, dismiss all the warnings, once the project is loaded go into settings->security & privacy->allow access for any pop ups.
+8. Done!
+
 
 For VR set up with meta developer hub:
 
