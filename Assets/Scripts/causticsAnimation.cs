@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
+
+/// <summary>
+/// The causticsAnimation class is a MonoBehaviour that animates a light cookie with a caustics texture.
+/// </summary>
 [ExecuteAlways]
 public class causticsAnimation : MonoBehaviour
 {
@@ -23,25 +27,29 @@ public class causticsAnimation : MonoBehaviour
 
     private Light light;
 
-   
     void Start()
     {     
+        // Get the Light component attached to the GameObject
         light = GetComponent<Light>();
 
+        // Get the UniversalAdditionalLightData component attached to the GameObject
         lightData = GetComponent<UniversalAdditionalLightData>();
         if(lightData == null) {
             enabled = false;
         }
 
+        // Set the light cookie to the first caustics texture
         light.color = causticColor;
         lightData.lightCookieOffset = cookieOffset;
     }
     
+
     void Update()
     {
-
+        // If the light is enabled and there is at least one caustics texture
         if (light && caustics.Length>=1)
         {
+            // Set the light cookie to the caustics texture at the current frame
             int index = ((int)(Time.frameCount/ boost))%caustics.Length;
             light.cookie = caustics[index];
             cookieOffset[0] = cookieOffset[0] + Time.deltaTime*xSpeed;

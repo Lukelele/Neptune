@@ -301,9 +301,7 @@ MonoBehaviour:
   netStructure: 0200000002000000
   isIdealNet: 0
   usingNet: 1
-  iq: 0
-  iqColor: {r: 0.21960784, g: 0.2627451, b: 0.30588236, a: 1}
-  displayIqColor: 0
+  displayIqColor: 1
   iqColorObject: {fileID: 6173332620075741119}
   timeBetweenFeedForward: 1
   useStaticValue: 1

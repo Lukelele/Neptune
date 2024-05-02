@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638492828340000000
+      ticks: 638493080340000000
     m_Hash: 2997256379
   m_LockFileStatus:
     m_FilePath: /Users/lukelele/Documents/UnityProjects/Neptune Final/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638492828340000000
+      ticks: 638493080340000000
     m_Hash: 604232613
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -3689,12 +3689,14 @@ m_ResolvedPackages:
     - 1.8.0-pre.2
     - 1.8.0
     - 1.8.1
+    - 1.8.2
     compatible:
     - 1.7.0
     - 1.8.0-pre.1
     - 1.8.0-pre.2
     - 1.8.0
     - 1.8.1
+    - 1.8.2
     recommended: 1.7.0
     deprecated: []
   dependencies:

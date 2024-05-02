@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using XCharts.Runtime;
 
+
+/// <summary>
+/// The DisplayNetworkResultsPie class is a MonoBehaviour that displays data in a pie chart.
+/// </summary>
 public class DisplayNetworkResultsPie : MonoBehaviour
 {
     private int arraySize = 0;
@@ -18,20 +22,13 @@ public class DisplayNetworkResultsPie : MonoBehaviour
     [SerializeField] public List<float> xArray = new List<float>();
     [SerializeField] public List<float> yArray = new List<float>();
 
+    private PieChart chart;
+
 
     private void Start() {
         // https://www.youtube.com/watch?v=2pCkInvkwZ0
-        // returns array of children with DummyScript attatched
 
-        // xArray.Add(1);
-        // xArray.Add(2);
-        // xArray.Add(3);
-
-        // // add data to xArray and yArray
-        // yArray.Add(0);
-        // yArray.Add(0);
-        // yArray.Add(0);
-
+        chart = this.GetComponentInChildren<PieChart>();
         arraySize = xArray.Count;
         makeChart();
         // plotScatter();
@@ -40,19 +37,11 @@ public class DisplayNetworkResultsPie : MonoBehaviour
 
 
     private void Update() {
-        // if (resultsValues.changeMade == true) {
-        //     displayGeneration();
-        //     displayGraphUpdate();
-        //     resultsValues.changeMade = false;
-        // }
-
         time += Time.deltaTime;
         if (time > updateInterval) {
             gatherData();
 
             arraySize = xArray.Count;
-
-            var chart = this.GetComponentInChildren<PieChart>();
 
             chart.series[0].ClearData();
             for (int i = 0; i < arraySize; i++) {
@@ -63,14 +52,9 @@ public class DisplayNetworkResultsPie : MonoBehaviour
     }
 
 
-    private void displayGeneration() {
-        var chart = gameObject.transform.GetChild(0).gameObject.GetComponent<PieChart>();
-        var title = chart.EnsureChartComponent<Title>();
-        title.text = "Generation ";  
-    }
-
-
-
+    /// <summary>
+    /// displayGraphUpdate method updates the line chart with the latest data.
+    /// </summary>
     private void displayGraphUpdate() {
         var chart = this.GetComponentInChildren<PieChart>();
         
@@ -83,7 +67,9 @@ public class DisplayNetworkResultsPie : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// makeChart method creates a new pie chart.
+    /// </summary>
     public void makeChart() {
         var chart = this.GetComponentInChildren<PieChart>();
         if (transform.childCount > 0) {
@@ -121,21 +107,10 @@ public class DisplayNetworkResultsPie : MonoBehaviour
         }
     }
 
-    private void plotScatter() {
-        var chart = this.GetComponentInChildren<ScatterChart>();
 
-        chart.AddSerie<Pie>("scatter");
-        // chart.series[0].symbol.size = 8f;
-        chart.series[0].animation.enable = false;
-
-        arraySize = xArray.Count;
-
-        for (int i = 0; i < arraySize; i++) {
-            chart.series[0].AddData(xArray[i],  yArray[i]);
-        }
-
-    }
-
+    /// <summary>
+    /// plotPie method plots the data in a pie chart.
+    /// </summary>
     private void plotPie() {
         var chart = this.GetComponentInChildren<PieChart>();
 
@@ -150,12 +125,18 @@ public class DisplayNetworkResultsPie : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// AddData method adds data to the x and y arrays and updates the chart.
+    /// </summary>
     private void AddData(float yData) {
         xArray.Add(xArray.Count * updateInterval);
         yArray.Add(yData);
     }
 
+
+    /// <summary>
+    /// gatherData method gathers data from the scene and stores it in the yArray.
+    /// </summary>
     private void gatherData() {
         int foodCount = getFoodCount();
         int flockCount = getFlockCount();
@@ -166,51 +147,68 @@ public class DisplayNetworkResultsPie : MonoBehaviour
         yArray[2] = predatorCount;
     }
 
+    /// <summary>
+    /// clearData method clears the x and y arrays and removes data from the chart.
+    /// </summary>
+    private void clearData() {
+        xArray = new List<float>();
+        yArray = new List<float>();
 
+        arraySize = 0;
 
+        chart.RemoveData();
+    }
 
+    /// <summary>
+    /// getFoodCount method returns the number of food objects in the scene.
+    /// </summary>
+    /// <returns>The number of food objects in the scene.</returns>
     public int getFoodCount() {
         return GameObject.FindGameObjectsWithTag("Food").Length;
     }
 
+    /// <summary>
+    /// getPredatorCount method returns the number of predator objects in the scene.
+    /// </summary>
+    /// <returns>The number of predator objects in the scene.</returns>
     public int getPredatorCount() {
         return GameObject.FindGameObjectsWithTag("Shark").Length;
     }
 
+    /// <summary>
+    /// getFlockCount method returns the number of flock objects in the scene.
+    /// </summary>
+    /// <returns>The number of flock objects in the scene.</returns>
     public int getFlockCount() {
         return GameObject.FindGameObjectsWithTag("Flock").Length;
     }
 
+    /// <summary>
+    /// getPreyCount method returns the number of prey objects in the scene.
+    /// </summary>
+    /// <returns>The number of prey objects in the scene.</returns>
     public int getPreyCount() {
         return GameObject.FindGameObjectsWithTag("Fish").Length;
     }
 
-    public float getFoodBiomass() {
-        GameObject[] food = GameObject.FindGameObjectsWithTag("Food");
-        float biomass = 0;
-        for (int i = 0; i < food.Length; i++) {
-            biomass += food[i].GetComponent<Seaweed>().energy;
-        }
-        return biomass;
-    }
 
-    public float getPredatorBiomass() {
-        GameObject[] predators = GameObject.FindGameObjectsWithTag("Predator");
-        float biomass = 0;
-        for (int i = 0; i < predators.Length; i++) {
-            biomass += predators[i].GetComponent<Shark>().energy;
-        }
-        return biomass;
-    }
+    // public float getPredatorBiomass() {
+    //     GameObject[] predators = GameObject.FindGameObjectsWithTag("Predator");
+    //     float biomass = 0;
+    //     for (int i = 0; i < predators.Length; i++) {
+    //         biomass += predators[i].GetComponent<Shark>().energy;
+    //     }
+    //     return biomass;
+    // }
 
-    public float getPreyBiomass() {
-        GameObject[] prey = GameObject.FindGameObjectsWithTag("Prey");
-        float biomass = 0;
-        for (int i = 0; i < prey.Length; i++) {
-            biomass += prey[i].GetComponent<FlockUnit>().energy;
-        }
-        return biomass;
-    }
+    // public float getPreyBiomass() {
+    //     GameObject[] prey = GameObject.FindGameObjectsWithTag("Prey");
+    //     float biomass = 0;
+    //     for (int i = 0; i < prey.Length; i++) {
+    //         biomass += prey[i].GetComponent<FlockUnit>().energy;
+    //     }
+    //     return biomass;
+    // }
     
     // public void SetXAxisName(int nameId) {
     //     XName = NameIdToName(nameId);

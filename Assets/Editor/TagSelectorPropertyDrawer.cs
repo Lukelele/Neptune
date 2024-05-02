@@ -5,6 +5,9 @@ using System.Collections.Generic;
 //Original by DYLAN ENGELMAN http://jupiterlighthousestudio.com/custom-inspectors-unity/
 //Altered by Brecht Lecluyse https://www.brechtos.com
  
+ /// <summary>
+ /// This class creates a custom property drawer that allows for the selection of tags in the inspector.
+ /// </summary>
 [CustomPropertyDrawer(typeof(TagSelectorAttribute))]
 public class TagSelectorPropertyDrawer : PropertyDrawer
 {

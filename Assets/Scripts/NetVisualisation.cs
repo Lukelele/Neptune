@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+
+/// <summary>
+/// The NetVisualisation visualizes the neural network of an entity.
+/// </summary>
 public class NetVisualisation : MonoBehaviour
 {
-    [SerializeField] private GameObject a;
     public static Net net;
+    public static bool isDirty = true;
 
     public GameObject spherePrefab;
     public GameObject linePrefab;
@@ -17,74 +21,73 @@ public class NetVisualisation : MonoBehaviour
     private List<GameObject> nodes = new List<GameObject>();
     private List<GameObject> connections = new List<GameObject>();
 
-    private bool isVisualized = false;
+    public Material glowMaterial;
 
     void Start()
     {
-        net = a.GetComponent<Shark>().HuntingSystem;
     }
     
     private void Update()
     {
-        if (a != null && !isVisualized)
-        {
-            // Visualize the neural network of the selected entity
-            VisualizeNetwork(net);
-
-            isVisualized = true;
-        }
-        else if (a == null && isVisualized)
-        {
-            // Clear the visualization
-            ClearVisualization();
-            isVisualized = false;
-            Debug.Log("Cleared visualization.");
-        }
+        VisualizeNetwork(net);
 
         // Rotate the network around its y-axis
         transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
     }
 
+    /// <summary>
+    /// VisualizeNetwork method visualizes the neural network of the entity.
+    /// </summary>
+    /// <param name="net"></param>
     private void VisualizeNetwork(Net net)
     {
-        if (net != null)
+        if (!isDirty) return;
+        
+        ClearVisualization();
+        if (net == null)
         {
-            // Accessing the neural network layers from the Net
-            Layer[] layers = net.layers;
-            int inputSize = layers[0].size;
-            int[] hiddenSizes = new int[layers.Length - 2]; // Excluding input and output layers
-            for (int i = 1; i < layers.Length - 1; i++)
-            {
-                hiddenSizes[i - 1] = layers[i].size;
-            }
-            int outputSize = layers[layers.Length - 1].size;
-
-            // Position of the visualization
-            Vector3 visualizationPosition = gameObject.transform.position - new Vector3((hiddenSizes.Length + 1) * 5 * scale / 2, 0, 0);
-
-            // Visualize input layer
-            CreateNodes(inputSize, visualizationPosition - new Vector3(0, layers[0].size * 2 * scale / 2, 0));
-
-            // Visualize hidden layers
-            int offset = inputSize;
-            for (int i = 0; i < hiddenSizes.Length; i++)
-            {
-                CreateNodes(hiddenSizes[i], visualizationPosition + new Vector3((i + 1) * 5 * scale, 0, 0) - new Vector3(0, hiddenSizes[i] * 2 * scale / 2, 0));
-                offset += hiddenSizes[i];
-            }
-
-            // Visualize output layer
-            CreateNodes(outputSize, visualizationPosition + new Vector3((hiddenSizes.Length + 1) * 5 * scale, 0, 0) - new Vector3(0, layers[layers.Length - 1].size * 2 * scale / 2, 0));
-
-            // Visualize connections
-            VisualizeConnections(net, inputSize, hiddenSizes);
+            return;
         }
-        else
+        
+        Debug.Log("222222222222222");
+
+        // Accessing the neural network layers from the Net
+        Layer[] layers = net.layers;
+        int inputSize = layers[0].size;
+        int[] hiddenSizes = new int[layers.Length - 2]; // Excluding input and output layers
+        for (int i = 1; i < layers.Length - 1; i++)
         {
-            Debug.LogError("Net not found.");
+            hiddenSizes[i - 1] = layers[i].size;
         }
+        int outputSize = layers[layers.Length - 1].size;
+
+        // Position of the visualization
+        Vector3 visualizationPosition = gameObject.transform.position - new Vector3((hiddenSizes.Length + 1) * 5 * scale / 2, 0, 0);
+
+        // Visualize input layer
+        CreateNodes(inputSize, visualizationPosition - new Vector3(0, layers[0].size * 2 * scale / 2, 0));
+
+        // Visualize hidden layers
+        int offset = inputSize;
+        for (int i = 0; i < hiddenSizes.Length; i++)
+        {
+            CreateNodes(hiddenSizes[i], visualizationPosition + new Vector3((i + 1) * 5 * scale, 0, 0) - new Vector3(0, hiddenSizes[i] * 2 * scale / 2, 0));
+            offset += hiddenSizes[i];
+        }
+
+        // Visualize output layer
+        CreateNodes(outputSize, visualizationPosition + new Vector3((hiddenSizes.Length + 1) * 5 * scale, 0, 0) - new Vector3(0, layers[layers.Length - 1].size * 2 * scale / 2, 0));
+
+        // Visualize connections
+        VisualizeConnections(net, inputSize, hiddenSizes);
+        isDirty = false;
     }
 
+    /// <summary>
+    /// CreateNodes method creates nodes for the neural network visualization.
+    /// </summary>
+    /// <param name="size"></param>
+    /// <param name="position"></param>
     private void CreateNodes(int size, Vector3 position)
     {
         for (int i = 0; i < size; i++)
@@ -97,6 +100,12 @@ public class NetVisualisation : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// VisualizeConnections method visualizes the connections between the nodes of the neural network.
+    /// </summary>
+    /// <param name="net"></param>
+    /// <param name="inputSize"></param>
+    /// <param name="hiddenSizes"></param>
     private void VisualizeConnections(Net net, int inputSize, int[] hiddenSizes)
     {
         int numLayers = hiddenSizes.Length + 2; // Input layer + hidden layers + output layer
@@ -117,7 +126,17 @@ public class NetVisualisation : MonoBehaviour
         }
     }
 
-    private void DrawConnection(int layerIndex1, int nodeIndex1, int layerIndex2, int nodeIndex2, float weight, int inputSize, int[] hiddenSizes)
+    /// <summary>
+    /// DrawConnection method draws a connection between two nodes of the neural network.
+    /// </summary>
+    /// <param name="layerIndex1"></param>
+    /// <param name="nodeIndex1"></param>
+    /// <param name="layerIndex2"></param>
+    /// <param name="nodeIndex2"></param>
+    /// <param name="weight"></param>
+    /// <param name="inputSize"></param>
+    /// <param name="hiddenSizes"></param>
+   private void DrawConnection(int layerIndex1, int nodeIndex1, int layerIndex2, int nodeIndex2, float weight, int inputSize, int[] hiddenSizes)
     {
         int startIndex, endIndex;
 
@@ -166,9 +185,10 @@ public class NetVisualisation : MonoBehaviour
             float thickness = Mathf.Abs(weight) * 0.1f * scale; // Example scaling factor
             lineRenderer.startWidth = thickness;
             lineRenderer.endWidth = thickness;
-            lineRenderer.material.SetColor("_EmissionColor", lineRenderer.material.color * thickness); // Set the color based on the weight
+            lineRenderer.material = glowMaterial;
+            lineRenderer.material.SetColor("_EmissionColor", glowMaterial.color * Mathf.LinearToGammaSpace(Mathf.Abs(weight) * 100)); // Set the color based on the weight
 
-            connections.Add(connection);
+            connections.Add(connection);  
         }
         else
         {
@@ -176,6 +196,9 @@ public class NetVisualisation : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ClearVisualization method clears the existing nodes and connections from the visualization.
+    /// </summary>
     private void ClearVisualization()
     {
         // Clear existing nodes and connections from the visualization

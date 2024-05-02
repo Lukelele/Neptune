@@ -188,7 +188,7 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
 
         protected override void MoveRig(Vector3 translationInWorldSpace)
         {
-            base.MoveRig(translationInWorldSpace/Time.timeScale);
+            base.MoveRig(translationInWorldSpace / Time.timeScale);
         }
     }
 }

@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1207f6a2f31f4182bc56941ea0390b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energy: 10
+  energy: 1
   MyPredators:
   - Fish
   MyPreys: []
@@ -137,10 +137,11 @@ MonoBehaviour:
   age: 0
   energyGrow: 1
   energyGrowInterval: 1
-  reproductionEnergyThreshold: 20
-  reproductionEnergyCost: 20
-  _reproductionEnergy: 10
-  maxSizeEnergy: 60
+  maxEnergy: 100
+  reproductionEnergyThreshold: 50
+  reproductionEnergyCost: 50
+  _reproductionEnergy: 0
+  maxSizeEnergy: 100
 --- !u!65 &4250455635874285215
 BoxCollider:
   m_ObjectHideFlags: 0

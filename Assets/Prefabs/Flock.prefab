@@ -159,8 +159,7 @@ MonoBehaviour:
   isIdealNet: 0
   usingNet: 1
   iq: 0
-  iqColor: {r: 1, g: 0, b: 0, a: 1}
-  displayIqColor: 0
+  displayIqColor: 1
   showCenter: 1
   iqColorObject: {fileID: 3934583637015613246}
   timeBetweenFeedForward: 1

@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// The Shark class represents a shark in the game, inherits from Animal.
+/// </summary>
 public class Shark : Animal
 {
     [Header("Shark Settings")]
@@ -13,8 +17,6 @@ public class Shark : Animal
     [SerializeField] private int[] netStructure = new[] { 2, 3, 2 };
     [SerializeField] private bool isIdealNet;
     [SerializeField] private bool usingNet;
-    [SerializeField] public float iq;
-    [SerializeField] public Color iqColor;
     [SerializeField] private bool displayIqColor;
     public bool DisplayIqColor => useStaticValue ? DisplayIqColorStatic : displayIqColor;
     private static bool DisplayIqColorStatic;
@@ -33,6 +35,7 @@ public class Shark : Animal
         timeBetweenFeedForward = Random.Range(0.5f, 1.5f);
         HuntingSystem = new HuntingSystem(netStructure);
 
+        // Set the weights of the layers to the ideal weights if the isIdealNet flag is set
         if (isIdealNet)
         {
             HuntingSystem.layers[1].weights[0, 0] = 1.0f;
@@ -40,10 +43,13 @@ public class Shark : Animal
             HuntingSystem.layers[1].weights[1, 0] = 0f;
             HuntingSystem.layers[1].weights[1, 1] = 1.0f;
         }
+        HuntingSystem.AssessIQ();
         
+        // Set the shark's vision
         vision.subject = transform;
         vision.targetTags = MyPreys;
 
+        // Set the shark's IQ color
         iqMaterial = iqColorObject.GetComponent<SkinnedMeshRenderer>().material;
         initialIqMaterial = Instantiate(iqMaterial);
     }
@@ -59,25 +65,34 @@ public class Shark : Animal
     
     protected void FixedUpdate()
     {
+        // Feed forward the neural network
         if (usingNet)
         {
             if (Time.time - _feedForwardTimer > timeBetweenFeedForward)
             {
                 HuntingSystem.FeedForward(transform, vision);
                 timeBetweenFeedForward = Random.Range(0.5f, 1.5f);
-                iqMaterial.color = DisplayIqColor ? iqColor : initialIqMaterial.color;
+                iqMaterial.color = DisplayIqColor ? HuntingSystem.iqColor : initialIqMaterial.color;
                 _feedForwardTimer = Time.time;
             }
         }
     }
     
+    /// <summary>
+    /// Move method moves the shark forward.
+    /// </summary>
     void Move()
     {
         transform.Translate(Vector3.forward * (MoveSpeed * Time.deltaTime));
     }
     
+    /// <summary>
+    /// OnCollisionEnter method is called when the shark collides with another object.
+    /// </summary>
+    /// <returns>returns Shark gameobject</returns>
     protected override GameObject Reproduce()
     {
+        //if (GameObject.FindGameObjectsWithTag("Shark").Length >= 30) return null;
         GameObject child = base.Reproduce();
         Shark childScript = child.GetComponent<Shark>();
         childScript.HuntingSystem = new HuntingSystem(HuntingSystem.CopyLayers());
@@ -85,6 +100,9 @@ public class Shark : Animal
         return child;
     }
     
+    /// <summary>
+    /// VisualiseNet method visualises the neural network.
+    /// </summary>
     public void VisualiseNet()
     {
         HuntingSystem.VisualiseNet();

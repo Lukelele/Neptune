@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The TurtleMovement class is a MonoBehaviour that controls the movement of a turtle.
+/// </summary>
 public class TurtleMovement : MonoBehaviour
 {
     public float speed = 1.0f;

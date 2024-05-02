@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6860628106434525892}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 7065153269042247417}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 4979562862210373493}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 3477949875677728837}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 8692864083526464948}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 5228624334060055337}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 255549987593629177}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -594,7 +594,7 @@ GameObject:
   - component: {fileID: 989161991243662523}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -677,7 +677,7 @@ GameObject:
   - component: {fileID: 6035724979869006211}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -760,7 +760,7 @@ GameObject:
   - component: {fileID: 5315977278370235599}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -843,7 +843,7 @@ GameObject:
   - component: {fileID: 4944860827040978012}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -926,7 +926,7 @@ GameObject:
   - component: {fileID: 5152967597973781765}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1009,7 +1009,7 @@ GameObject:
   - component: {fileID: 572065495219571595}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1092,7 +1092,7 @@ GameObject:
   - component: {fileID: 6676164702106960166}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1175,7 +1175,7 @@ GameObject:
   - component: {fileID: 1232015180034784298}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1258,7 +1258,7 @@ GameObject:
   - component: {fileID: 539021050569481827}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1341,7 +1341,7 @@ GameObject:
   - component: {fileID: 7497249082630478919}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1424,7 +1424,7 @@ GameObject:
   - component: {fileID: 8806813316408867332}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1507,7 +1507,7 @@ GameObject:
   - component: {fileID: 4014903174491457748}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1590,7 +1590,7 @@ GameObject:
   - component: {fileID: 4851385103857244750}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1673,7 +1673,7 @@ GameObject:
   - component: {fileID: 4770807260744941124}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1756,7 +1756,7 @@ GameObject:
   - component: {fileID: 7051091101335376972}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1839,7 +1839,7 @@ GameObject:
   - component: {fileID: 4922582017427747593}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1922,7 +1922,7 @@ GameObject:
   - component: {fileID: 2788814368960570516}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2005,7 +2005,7 @@ GameObject:
   - component: {fileID: 5392166624165696386}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2088,7 +2088,7 @@ GameObject:
   - component: {fileID: 7526187091508250119}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2171,7 +2171,7 @@ GameObject:
   - component: {fileID: 4362938120164924302}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2254,7 +2254,7 @@ GameObject:
   - component: {fileID: 1589414936744310968}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2337,7 +2337,7 @@ GameObject:
   - component: {fileID: 4706280979106851282}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2420,7 +2420,7 @@ GameObject:
   - component: {fileID: 3915750447031668552}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2503,7 +2503,7 @@ GameObject:
   - component: {fileID: 2919823451052713832}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2586,7 +2586,7 @@ GameObject:
   - component: {fileID: 1326944824842922914}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2669,7 +2669,7 @@ GameObject:
   - component: {fileID: 1186556454952243207}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2752,7 +2752,7 @@ GameObject:
   - component: {fileID: 8077203371994329752}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2835,7 +2835,7 @@ GameObject:
   - component: {fileID: 6745043318879163286}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2918,7 +2918,7 @@ GameObject:
   - component: {fileID: 7440476768099654187}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3001,7 +3001,7 @@ GameObject:
   - component: {fileID: 5843005610055584006}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3084,7 +3084,7 @@ GameObject:
   - component: {fileID: 6610585317738460865}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3167,7 +3167,7 @@ GameObject:
   - component: {fileID: 5195746041153086266}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3250,7 +3250,7 @@ GameObject:
   - component: {fileID: 1618361829227469078}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3333,7 +3333,7 @@ GameObject:
   - component: {fileID: 4120469458452336632}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3416,7 +3416,7 @@ GameObject:
   - component: {fileID: 5380936001842414064}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3499,7 +3499,7 @@ GameObject:
   - component: {fileID: 9088189088262992207}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3582,7 +3582,7 @@ GameObject:
   - component: {fileID: 7666958922948157763}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3805,7 +3805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2a6d7411ef4632ac4c33264a976989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energy: 2
+  energy: 1
   MyPredators:
   - Fish
   MyPreys: []
@@ -3813,10 +3813,11 @@ MonoBehaviour:
   age: 0
   energyGrow: 1
   energyGrowInterval: 1
-  reproductionEnergyThreshold: 20
-  reproductionEnergyCost: 100
+  maxEnergy: 100
+  reproductionEnergyThreshold: 50
+  reproductionEnergyCost: 50
   _reproductionEnergy: 0
-  maxSizeEnergy: 12
+  maxSizeEnergy: 100
   leaves:
   - {fileID: 8384208077453941994}
   - {fileID: 1440454211061718279}
@@ -3908,7 +3909,7 @@ GameObject:
   - component: {fileID: 8975229638390003911}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3991,7 +3992,7 @@ GameObject:
   - component: {fileID: 2685181548600330368}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4074,7 +4075,7 @@ GameObject:
   - component: {fileID: 8327516245305722767}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4157,7 +4158,7 @@ GameObject:
   - component: {fileID: 2462073802391102237}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4240,7 +4241,7 @@ GameObject:
   - component: {fileID: 3863759825002301391}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4323,7 +4324,7 @@ GameObject:
   - component: {fileID: 6702968469409776221}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4406,7 +4407,7 @@ GameObject:
   - component: {fileID: 3743064609980591328}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4489,7 +4490,7 @@ GameObject:
   - component: {fileID: 691585825549996454}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4572,7 +4573,7 @@ GameObject:
   - component: {fileID: 7630193815572841567}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4655,7 +4656,7 @@ GameObject:
   - component: {fileID: 648804531600652588}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4738,7 +4739,7 @@ GameObject:
   - component: {fileID: 1500024676046308969}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4821,7 +4822,7 @@ GameObject:
   - component: {fileID: 7426577197894131503}
   m_Layer: 0
   m_Name: defaultMaterial
-  m_TagString: Food
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

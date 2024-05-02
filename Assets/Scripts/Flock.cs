@@ -3,30 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
+/// <summary>
+/// The Flock class that represents a flock of flock units.
+/// </summary>
 public class Flock : MonoBehaviour
 {
     [Header("Flock Settings")]
     [SerializeField] private float moveSpeed = 1;
     public float MoveSpeed => useStaticValue ? MoveSpeedStatic : moveSpeed;
-    private static float MoveSpeedStatic;
+    private static float MoveSpeedStatic;         // whether the speed is controlled by the static slider value
     [SerializeField] private VisionCone vision;
     public HuntingSystem HuntingSystem;
-    [SerializeField] private int[] netStructure = new[] { 2, 3, 2 };
-    [SerializeField] private bool isIdealNet;
+    [SerializeField] private int[] netStructure = new[] { 2, 2 };        // layer structure of the neural network
+    [SerializeField] private bool isIdealNet;               // whether the net is fully learned
     [SerializeField] private bool usingNet;
     [SerializeField] public float iq;
-    [SerializeField] public Color iqColor;
     [SerializeField] private bool displayIqColor;
     [SerializeField] private bool showCenter = true;
     public bool ShowCenter => useStaticValue ? ShowCenterStatic : showCenter;
     private static bool ShowCenterStatic;
     public bool DisplayIqColor => useStaticValue ? DisplayIqColorStatic : displayIqColor;
     private static bool DisplayIqColorStatic;
+
     [SerializeField] private GameObject iqColorObject;
     private Material iqMaterial;
     private MeshRenderer iqMeshRenderer;
     private Material initialIqMaterial;
     private float _feedForwardTimer = -10;
+
     [SerializeField] private float timeBetweenFeedForward = 1f;
     [SerializeField] private int maxFlockSize;
     public int MaxFlockSize => useStaticValue ? MaxFlockSizeStatic : maxFlockSize;
@@ -110,11 +115,13 @@ public class Flock : MonoBehaviour
     
     public void Awake()
     {
+        // Set the static values to the initial values
         timeBetweenFeedForward = Random.Range(0.5f, 1.5f);
         flockUnitPrefab = flockUnitPrefabs[Random.Range(0, flockUnitPrefabs.Length)];
         AllUnits = new List<FlockUnit>();
         HuntingSystem = new HuntingSystem(netStructure);
 
+        // Set the weights of the neural network to the ideal weights
         if (isIdealNet)
         {
             HuntingSystem.layers[1].weights[0, 0] = 1.0f;
@@ -122,9 +129,12 @@ public class Flock : MonoBehaviour
             HuntingSystem.layers[1].weights[1, 0] = 0f;
             HuntingSystem.layers[1].weights[1, 1] = 1.0f;
         }
+        HuntingSystem.AssessIQ();
 
+        // Set the vision of the flock
         vision.subject = transform;
         
+        // Set the initial IQ color
         iqMeshRenderer = iqColorObject.GetComponent<MeshRenderer>();
         iqMaterial = iqMeshRenderer.material;
         initialIqMaterial = Instantiate(iqMaterial);
@@ -132,31 +142,36 @@ public class Flock : MonoBehaviour
     
     void Update()
     {
+        // Remove any null units from the flock
         for (int i = AllUnits.Count - 1; i >= 0; i--)
         {
             if (AllUnits[i] == null) AllUnits.RemoveAt(i);
         }
         
+        // Move each unit in the flock
         for (var i = 0; i < AllUnits.Count; i++)
         {
             AllUnits[i].MoveUnit();
         } 
         
+        // Rotate the flock towards the target
         if (usingNet) HuntingSystem.Rotate(transform);
         Move();
         
+        // Manage the flock, including removing the flock if it is empty
         ManageFlock();
     }
     
     protected void FixedUpdate()
     {
+        // Feed forward the neural network
         if (usingNet)
         {
             if (Time.time - _feedForwardTimer > timeBetweenFeedForward)
             {
                 HuntingSystem.FeedForward(transform, vision);
                 timeBetweenFeedForward = Random.Range(0.5f, 1.5f);
-                iqMaterial.color = DisplayIqColor ? iqColor : initialIqMaterial.color;
+                iqMaterial.color = DisplayIqColor ? HuntingSystem.iqColor : initialIqMaterial.color;
                 _feedForwardTimer = Time.time;
             }
         }
@@ -164,6 +179,9 @@ public class Flock : MonoBehaviour
         iqMeshRenderer.enabled = ShowCenter;
     }
     
+    /// <summary>
+    /// CreateUnit method creates a new flock unit and adds to the current flock.
+    /// </summary>
     public void CreateUnit() {
         Vector3 pos = transform.position + new Vector3(Random.Range(-spawnBounds.x, spawnBounds.x), 
             Random.Range(-spawnBounds.y, spawnBounds.y),
@@ -173,8 +191,12 @@ public class Flock : MonoBehaviour
         AddUnit(unit);
     }
     
+    /// <summary>
+    /// AddUnit method adds a flock unit to the current flock.
+    /// </summary>
     public void AddUnit(FlockUnit unit) {
         if (AllUnits == null) AllUnits = new List<FlockUnit>();
+        // If the flock is not full, add the unit to the flock
         if(AllUnits.Count < MaxFlockSize) {
             AllUnits.Add(unit);
             AllUnits.Last().AssignFlock(this);
@@ -183,14 +205,20 @@ public class Flock : MonoBehaviour
         }
         else
         {
+            // If the flock is full, create a new flock and add the unit to the new flock
             Flock newFlock = Instantiate(this, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
             newFlock.HuntingSystem = new HuntingSystem(HuntingSystem.CopyLayers());
             newFlock.HuntingSystem.Mutate();
             newFlock.AddUnit(unit);
+            unit.generation++;
         }
     }
-    
+
+    /// <summary>
+    /// RemoveUnit method removes a flock unit from the current flock.
+    /// </summary>
     private void ManageFlock() {
+        // If the flock is empty, destroy the flock
         if (AllUnits.Count == 0)
         {
             emptyFlockTimer += Time.deltaTime;
@@ -202,11 +230,17 @@ public class Flock : MonoBehaviour
         else emptyFlockTimer = 0;
     }
     
+    /// <summary>
+    /// Move method moves the flock in the forward direction.
+    /// </summary>
     void Move()
     {
         transform.Translate(Vector3.forward * (MoveSpeed * Time.deltaTime));
     }
     
+    /// <summary>
+    /// VisualiseNet method visualises the neural network of the flock.
+    /// </summary>
     public void VisualiseNet()
     {
         HuntingSystem.VisualiseNet();

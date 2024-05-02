@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+
+/// <summary>
+/// The VisionCone class represents a vision cone that can be attached onto and shark or a flock.
+/// </summary>
 public class VisionCone : MonoBehaviour
 {
     [Header("Vision Cone Settings")]
@@ -19,6 +23,7 @@ public class VisionCone : MonoBehaviour
     
     private Transform _target;
     private Collider _targetCollider;
+    
     public Transform Target
     {
         get
@@ -46,6 +51,9 @@ public class VisionCone : MonoBehaviour
         if (subject == null) subject = transform;
     }
     
+    /// <summary>
+    /// Finds the closest target from the seen list.
+    /// </summary>
     void FindClosestTarget()
     {
         Transform tMin = null;
@@ -90,6 +98,9 @@ public class VisionCone : MonoBehaviour
         if (drawLine) Debug.DrawRay(subject.position, TargetDir, Color.green);
     }
     
+    /// <summary>
+    /// Updates the random direction of the shark.
+    /// </summary>
     private void UpdateRandomDir()
     {
         float randomRightMagnitude = Random.Range(0.5f, 1f) * Random.Range(-1, 2);

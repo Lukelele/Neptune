@@ -18,6 +18,8 @@
 *.dylib
 *.cache
 *.bin
+*.dll
+*.so
 
 obj/
 .vscode/

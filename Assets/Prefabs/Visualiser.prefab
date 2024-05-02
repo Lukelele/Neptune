@@ -49,3 +49,4 @@ MonoBehaviour:
   linePrefab: {fileID: 5849978515043728365, guid: 5d606795c39c8e348b70305b24397e64, type: 3}
   scale: 1
   rotationSpeed: 30
+  glowMaterial: {fileID: 2100000, guid: dd90134ccff374845bc1701b8a99808d, type: 2}

@@ -19,7 +19,7 @@ MonoBehaviour:
     color: {r: 0, g: 0.43137255, b: 0.44705883, a: 1}
     distance: 200
     alpha: 0.05
-    refraction: 0
+    refraction: 0.2
     normalmap: {fileID: 2800000, guid: 08ef20a01c156e1428ca81211ca1275d, type: 3}
     UV: {x: 1, y: 1, z: 0.2, w: 0.1}
 --- !u!114 &-19973287660581355

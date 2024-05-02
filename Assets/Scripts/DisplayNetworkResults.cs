@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using XCharts.Runtime;
 
+
+/// <summary>
+/// The DisplayNetworkResults class is a MonoBehaviour that displays data in a line chart.
+/// </summary>
 public class DisplayNetworkResults : MonoBehaviour
 {
     private int arraySize = 0;
@@ -18,13 +22,11 @@ public class DisplayNetworkResults : MonoBehaviour
     [SerializeField] public List<float> xArray = new List<float>();
     [SerializeField] public List<float> yArray = new List<float>();
 
-    private LineChart chart;
+    [SerializeField] private LineChart chart;
 
 
     private void Start() {
         // https://www.youtube.com/watch?v=2pCkInvkwZ0
-
-        chart = this.GetComponentInChildren<LineChart>();
         arraySize = xArray.Count;
         makeChart();
         plotLine();
@@ -32,11 +34,6 @@ public class DisplayNetworkResults : MonoBehaviour
 
 
     private void Update() {
-        // if (resultsValues.changeMade == true) {
-        //     displayGraphUpdate();
-        //     resultsValues.changeMade = false;
-        // }
-
         time += Time.deltaTime;
         if (time > updateInterval) {
             time = 0;
@@ -46,7 +43,9 @@ public class DisplayNetworkResults : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// displayGraphUpdate method updates the line chart with the latest data.
+    /// </summary>
     private void displayGraphUpdate() {
         if (chart == null)  {
             Debug.LogError("Missing Chart");
@@ -60,7 +59,9 @@ public class DisplayNetworkResults : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// makeChart method creates a line chart in the scene.
+    /// </summary>
     public void makeChart() {
         if (transform.childCount > 0) {
             if (chart == null)  {
@@ -100,6 +101,9 @@ public class DisplayNetworkResults : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// plotScatter method plots the data in a scatter chart.
+    /// </summary>
     private void plotScatter() {
         chart.AddSerie<Line>("scatter");
         // chart.series[0].symbol.size = 8f;
@@ -108,12 +112,16 @@ public class DisplayNetworkResults : MonoBehaviour
 
         arraySize = xArray.Count;
 
+        // add data to the chart
         for (int i = 0; i < arraySize; i++) {
             chart.series[0].AddData(xArray[i],  yArray[i]);
         }
 
     }
 
+    /// <summary>
+    /// plotLine method plots the data in a line chart.
+    /// </summary>
     private void plotLine() {
         chart.AddSerie<Line>("line");
         // chart.series[0].symbol.size = 0f;
@@ -122,16 +130,23 @@ public class DisplayNetworkResults : MonoBehaviour
 
         arraySize = xArray.Count;
 
+        // add data to the chart
         for (int i = 0; i < arraySize; i++) {
             chart.series[0].AddData(xArray[i],  yArray[i]);
         }
     }
 
+    /// <summary>
+    /// AddData method adds data to the x and y arrays.
+    /// </summary>
     private void AddData(float yData) {
         xArray.Add(xArray.Count * updateInterval);
         yArray.Add(yData);
     }
 
+    /// <summary>
+    /// gatherData method collects data from the game objects.
+    /// </summary>
     private void gatherData() {
         if (YName == "Food") {
             int foodCount = getFoodCount();
@@ -151,6 +166,9 @@ public class DisplayNetworkResults : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// clearData method clears the x and y arrays and removes data from the chart.
+    /// </summary>
     private void clearData() {
         xArray = new List<float>();
         yArray = new List<float>();
@@ -160,30 +178,53 @@ public class DisplayNetworkResults : MonoBehaviour
         chart.RemoveData();
     }
 
-
+    /// <summary>
+    /// getFoodCount method returns the number of food objects in the scene.
+    /// </summary>
+    /// <returns>The number of food objects in the scene.</returns>
     public int getFoodCount() {
         return GameObject.FindGameObjectsWithTag("Food").Length;
     }
 
+    /// <summary>
+    /// getPredatorCount method returns the number of predator objects in the scene.
+    /// </summary>
+    /// <returns>The number of predator objects in the scene.</returns>
     public int getPredatorCount() {
         return GameObject.FindGameObjectsWithTag("Shark").Length;
     }
 
+    /// <summary>
+    /// getFlockCount method returns the number of flock objects in the scene.
+    /// </summary>
+    /// <returns>The number of flock objects in the scene.</returns>
     public int getFlockCount() {
         return GameObject.FindGameObjectsWithTag("Flock").Length;
     }
 
+    /// <summary>
+    /// getPreyCount method returns the number of prey objects in the scene.
+    /// </summary>
+    /// <returns>The number of prey objects in the scene.</returns>
     public int getPreyCount() {
         return GameObject.FindGameObjectsWithTag("Fish").Length;
     }
     
+    /// <summary>
+    /// set the x axis variable and clear the chart data
+    /// </summary>
+    /// <param name="nameId"></param>
     public void SetXAxisName(int nameId) {
         chart.series[0].data.Clear();
         xArray = new List<float>();
         yArray = new List<float>();
         XName = NameIdToName(nameId);
     }
-    
+
+    /// <summary>
+    /// set the y axis variable and clear the chart data
+    /// </summary>
+    /// <param name="nameId"></param>
     public void SetYAxisName(int nameId) {
         chart.series[0].data.Clear();
         xArray = new List<float>();
@@ -191,15 +232,21 @@ public class DisplayNetworkResults : MonoBehaviour
         YName = NameIdToName(nameId);
     }
     
+    /// <summary>
+    /// NameIdToName method converts a name ID to a name, called by the Dropdown menus.
+    /// </summary>
+    /// <returns></returns>
     public string NameIdToName(int nameId) {
         switch (nameId) {
             case 0:
-                return "Food";
+                return "None";
             case 1:
-                return "Shark";
+                return "Food";
             case 2:
-                return "Flock";
+                return "Shark";
             case 3:
+                return "Flock";
+            case 4:
                 return "Fish";
             default:
                 return "";
