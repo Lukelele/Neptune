@@ -20,7 +20,8 @@ For Unity project:
 5. Choose the unzipped folder location.
 6. Open the project.
 7. There may be security warnings on startup depending on the operating system. On Windows, a pop up may appear, click retarget. On MacOS, dismiss all the warnings, once the project is loaded go into settings->security & privacy->allow access for any pop ups.
-8. Done!
+8. If version errors cannot be resolved, use Unity version 2022.3.19f1
+9. Done!
 
 
 For VR set up with meta developer hub:
